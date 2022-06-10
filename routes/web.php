@@ -69,4 +69,4 @@ Route::any('/test',function(){
 
 // Route::get('post',[PostController::class,'index']);
 Route::get('contact',[PostController::class,'contact']);
-Route::get('post/{id}',[PostController::class,'postpage']);
+Route::get('post/{id}/{name}/{password}',[PostController::class,'postpage']);

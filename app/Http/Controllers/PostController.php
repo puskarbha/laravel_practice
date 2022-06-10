@@ -13,8 +13,8 @@ class PostController extends Controller
     public function contact(){
         return view('contact');
     }
-    public function postpage($id){
-        return view('mypost')->with('id',$id);
-}
-
+    public function postpage($id,$name,$password){
+        // return view('mypost')->with('id',$id);
+        return view('mypost',compact('id','name','password'));
+    }
 }
