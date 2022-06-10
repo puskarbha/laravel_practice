@@ -8,5 +8,6 @@
 </head>
 <body>
     <h1>SUccessfully landed to mypost with id {{$id}} </h1>
+    okay
 </body>
 </html>
