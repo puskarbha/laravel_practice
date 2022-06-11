@@ -11,7 +11,8 @@ class PostController extends Controller
         echo "This is page 1";
     }
     public function contact(){
-        return view('contact');
+        $people=['ram','shyam','hari','gopal'];
+        return view('contact',compact('people'));
     }
     public function postpage($id,$name,$password){
         // return view('mypost')->with('id',$id);
