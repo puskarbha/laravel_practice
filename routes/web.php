@@ -70,3 +70,25 @@ Route::any('/test',function(){
 // Route::get('post',[PostController::class,'index']);
 Route::get('contact',[PostController::class,'contact']);
 Route::get('post/{id}/{name}/{password}',[PostController::class,'postpage']);
+
+Route::get('/insert',function(){
+    DB::insert('insert into posts(title,content)  values(?,?)',['PHP with Laravel','Laravel is a interesting framework']);
+});
+
+Route::get('/read',function(){
+    $result=DB::select('select * from posts where id=?',[1]);
+    foreach($result as $post){
+        return $post->content;
+    }
+});
+
+
+Route::get('/update',function(){
+    $updated = DB::update('update posts set title="updated-title" where id=?',[1]);
+    return $updated;
+});
+
+Route::get('/delete',function(){
+    $deleted = DB::delete('delete from posts where id=?',[1]);
+    return $deleted;
+});
