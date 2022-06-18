@@ -112,3 +112,19 @@ Route::get('/read',function(){
     $post=post::find(2);
     return $post->title;
  });
+
+ //inserting data
+ Route::get('/basicinsert',function(){
+    $post = new Post;
+    $post->title="new eloquent title";
+    $post->content="new eloquent content";
+    $post->save();
+ });
+
+  //Updating data
+  Route::get('/basicupdate',function(){
+    $post =Post::find(3);
+    $post->title="updated eloquent title";
+    $post->content="updated eloquent content";
+    $post->save();
+ });
