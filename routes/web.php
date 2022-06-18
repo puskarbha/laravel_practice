@@ -128,3 +128,7 @@ Route::get('/read',function(){
     $post->content="updated eloquent content";
     $post->save();
  });
+
+ Route::get('/create',function(){
+    Post::create(['title'=>'the create method','content'=>'The create content']);
+ });
