@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Models\Post;
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -81,8 +82,6 @@ Route::any('/test',function(){
 //         return $post->content;
 //     }
 // });
-
-
 // Route::get('/update',function(){
 //     $updated = DB::update('update posts set title="updated-title" where id=?',[1]);
 //     return $updated;
@@ -94,41 +93,73 @@ Route::any('/test',function(){
 // });
 
 //extra○t all data
-Route::get('/read',function(){
+// Route::get('/read',function(){
    
-    $posts = Post::all();
-    foreach($posts as $post){
-        echo $post->title;
-    }
-});
-//same as above
- Route::get('/data',function(){
-    foreach (Post::all() as $post) {
-        echo $post->title;
-    }
- });
-//to find the desired data
- Route::get('/find',function(){
-    $post=post::find(2);
-    return $post->title;
- });
+//     $posts = Post::all();
+//     foreach($posts as $post){
+//         echo $post->title;
+//     }
+// });
+// //same as above
+//  Route::get('/data',function(){
+//     foreach (Post::all() as $post) {
+//         echo $post->title;
+//     }
+//  });
+// //to find the desired data
+//  Route::get('/find',function(){
+//     $post=post::find(2);
+//     return $post->title;
+//  });
 
- //inserting data
- Route::get('/basicinsert',function(){
-    $post = new Post;
-    $post->title="new eloquent title";
-    $post->content="new eloquent content";
-    $post->save();
- });
+//  //inserting data
+//  Route::get('/basicinsert',function(){
+//     $post = new Post;
+//     $post->title="new eloquent title";
+//     $post->content="new eloquent content";
+//     $post->save();
+//  });
 
-  //Updating data
-  Route::get('/basicupdate',function(){
-    $post =Post::find(3);
-    $post->title="updated eloquent title";
-    $post->content="updated eloquent content";
-    $post->save();
- });
+//   //Updating data
+//   Route::get('/basicupdate',function(){
+//     $post =Post::find(3);
+//     $post->title="updated eloquent title";
+//     $post->content="updated eloquent content";
+//     $post->save();
+//  });
 
- Route::get('/create',function(){
-    Post::create(['title'=>'the create method','content'=>'The create content']);
- });
+//  Route::get('/create',function(){
+//     Post::create(['title'=>'the create method','content'=>'The create content']);
+//  });
+
+//  Route::get('/update',function(){
+//     Post::where('id',2)->where('is_integer',0)->update(['title'=>'new updated title','content'=>'new updated content']);
+//  });
+
+//  //deleting a single data by find method
+//   Route::get('/delete1',function(){
+//     $post=Post::find(2);
+//     $post->delete();
+//   });
+
+//   //deleting by destroy method
+//   Route::get('/delete2',function(){
+
+//     //deleting a single data if we know the key
+//     Post::destroy(2);
+
+//     //deleting multiple data if we know the key
+//     Post::destroy([4,5]);
+
+//     //deleting a single data  by where method
+
+//     Post::where('is_integer',0)->delete();
+//   });
+
+//   Route::get('/softdelete',function(){
+//     $post=Post::find(4)->delete();
+//   });
+
+  Route::get('/user/{id}/post',function($id){
+      return User::find($id)->post;
+  });
