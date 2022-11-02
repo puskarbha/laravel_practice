@@ -1,9 +1,11 @@
 <?php
 
+use App\Models\country;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Models\Post;
 use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -178,4 +180,22 @@ Route::get('user/{id}/role',function ($id){
  foreach($users->roles as $role){
      echo $role->name;
  }
+
+});
+
+Route::get('user/pivot',function(){
+
+    $user=User::find(1);
+    foreach ($user->roles as $role){
+        return $role->pivot->created_at;
+    }
+
+});
+
+Route::get('country/post',function (){
+   $country= Country:: find(1);
+
+   foreach ($country->posts as $post){
+       return $post->title;
+   }
 });
