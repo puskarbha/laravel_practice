@@ -70,10 +70,10 @@ Route::any('/test',function(){
 
 // // Route::get('post',[PostController::class,'index']);
 // Route::get('contact',[PostController::class,'contact']);
-// Route::get('post/{id}/{name}/{password}',[PostController::class,'postpage']);
+// Route::get('post/{id}/{name}/{password}',[PostController::class,'postPage']);
 
 // Route::get('/insert',function(){
-//     DB::insert('insert into posts(title,content)  values(?,?)',['PHP with Laravel','Laravel is a interesting framework']);
+//     DB::insert('insert into posts(title,content)  values(?,?)',['PHP with Laravel','Laravel is an interesting framework']);
 // });
 
 // Route::get('/read',function(){
@@ -94,7 +94,7 @@ Route::any('/test',function(){
 
 //extra○t all data
 // Route::get('/read',function(){
-   
+
 //     $posts = Post::all();
 //     foreach($posts as $post){
 //         echo $post->title;
@@ -113,15 +113,16 @@ Route::any('/test',function(){
 //  });
 
 //  //inserting data
-//  Route::get('/basicinsert',function(){
+//  Route::get('/basicInsert',function(){
 //     $post = new Post;
 //     $post->title="new eloquent title";
 //     $post->content="new eloquent content";
 //     $post->save();
+
 //  });
 
 //   //Updating data
-//   Route::get('/basicupdate',function(){
+//   Route::get('/basicUpdate',function(){
 //     $post =Post::find(3);
 //     $post->title="updated eloquent title";
 //     $post->content="updated eloquent content";
@@ -156,10 +157,25 @@ Route::any('/test',function(){
 //     Post::where('is_integer',0)->delete();
 //   });
 
-//   Route::get('/softdelete',function(){
+//   Route::get('/softDelete',function(){
 //     $post=Post::find(4)->delete();
 //   });
 
+//One to One relationships
   Route::get('/user/{id}/post',function($id){
       return User::find($id)->post;
   });
+  //One-to-many relationship
+Route::get('user/posts',function(){
+        $users = User::find(1);
+        foreach($users->posts as $post){
+            echo $post->title."<br>";
+        }
+  });
+
+Route::get('user/{id}/role',function ($id){
+ $users= User::find($id);
+ foreach($users->roles as $role){
+     echo $role->name;
+ }
+});
