@@ -199,3 +199,18 @@ Route::get('country/post',function (){
        return $post->title;
    }
 });
+
+//polymorphic relation
+Route::get('user/photos',function(){
+    $user=User::find(1);
+  foreach($user->photos as $photo){
+      return $photo->path;
+  }
+});
+
+Route::get('post/photos',function(){
+    $post=Post::find(1);
+    foreach($post->photos as $photo){
+        echo $photo->path . "<br>";
+    }
+});

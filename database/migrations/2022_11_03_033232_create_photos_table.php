@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
+        Schema::create('photos', function (Blueprint $table) {
+            $table->id();
+            $table->string('path');
+            $table->string('imageable_id');
+            $table->string('imageable_type');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumn('user_id');
-        });
+        Schema::dropIfExists('photos');
     }
 };
