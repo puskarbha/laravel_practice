@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\country;
+use App\Models\photo;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Models\Post;
@@ -214,3 +215,18 @@ Route::get('post/photos',function(){
         echo $photo->path . "<br>";
     }
 });
+
+Route::get('photo/{id}/post',function($id){
+    $photo=Photo::findOrFail($id);
+    return $photo->imageable;
+});
+
+
+//polymorphic Many to many
+Route::get('post/tag',function (){
+    $post=Post::find(1);
+    foreach($post->tags as $tag){
+        echo $tag;
+    }
+});
+
